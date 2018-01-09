@@ -15,6 +15,15 @@ app.use(bodyparser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use('/', api(express));
 
+//Handle CORS request
+app.use(function(req, res, next){
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Method', 'GET, POST, PUT, DELETE');
+	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type, \ Authorization');
+
+	next();
+});
+
 var url = config.database;
 var options = {
   useMongoClient: true,
