@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const api = require('./app/routes/api');
 const bodyparser = require('body-parser');
 const morgan = require('morgan');
+const cors = require('cors');
 //const http = require('http').Server(app);
 
 
@@ -14,6 +15,7 @@ app.use(bodyparser.json());
 app.use(bodyparser.urlencoded({ extended: true }));
 app.use(morgan('dev'));
 app.use('/', api(express));
+app.use(cors());
 
 //Handle CORS request
 app.use(function(req, res, next){
